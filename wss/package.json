@@ -5,12 +5,8 @@
 	"author": "Jaclyn Staples",
 	"license": "MIT",
 	"type": "module",
-	"private": true,
-	"engines": {
-		"yarn": "^1.22.19"
-	},
 	"scripts": {
-		"wss:serve": "tsx index.ts"
+		"wss:serve": "npx tsx index.ts"
 	},
 	"dependencies": {
 		"chalk": "^5.3.0",
