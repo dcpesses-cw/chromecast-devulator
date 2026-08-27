@@ -1,5 +1,4 @@
 packages:
   - 'emulator'
-  - 'emulator-vanilla'
   - 'extension'
   - 'wss'

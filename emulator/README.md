@@ -4,15 +4,13 @@ This is an example on how to develop a Chromecast Emulator for your own project!
 
 ## Tech Stack
 ### Frontend:
-* [Svelte 5/SvelteKit](https://svelte.dev/)
-    * Typescript
-    * Prettier
 * [Chromecast CAF](https://developers.google.com/cast/docs/overview)
 ### Backend:
 * Nodejs + TSX
 * [Websockets](https://github.com/websockets/ws)
 
 ## Resources
+* [jaclynonacloud - chromecast-emulator-demo](https://github.com/jaclynonacloud/chromecast-emulator-demo/emulator)
 * [ajhsu - chromecast-device-emulator](https://github.com/ajhsu/chromecast-device-emulator)
   * [Example IPC Messages](https://github.com/ajhsu/chromecast-device-emulator/blob/master/examples/scenarios/BasicReceiverCAF-sample.json)
 * [Google Cast - Main Messages](https://developers.google.com/cast/docs/media/messages)
@@ -37,7 +35,7 @@ You can run the Websocket server with the following command:
 yarn serve
 ```
 
-You can run the SvelteKit server with the following command:
+You can run the frontend server with the following command:
 ```bash
 yarn dev
 ```
