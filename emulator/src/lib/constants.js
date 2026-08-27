@@ -1,9 +1,7 @@
-import type { GenericMediaMetadata } from 'chromecast-caf-receiver/cast.framework.messages'
-
-export enum TemplateLoadRequestEnum {
-	BASIC,
-	BASIC_QUEUE
-}
+export const TemplateLoadRequestEnum = {
+	BASIC: 0,
+	BASIC_QUEUE: 1
+};
 
 export const DEFAULT_QUEUED_MEDIA = {
 	type: 'LOAD',
@@ -70,7 +68,7 @@ export const DEFAULT_QUEUED_MEDIA = {
 			}
 		]
 	}
-}
+};
 
 export const DEFAULT_MEDIA = {
 	type: 'LOAD',
@@ -81,9 +79,9 @@ export const DEFAULT_MEDIA = {
 			title: 'Big Buck Bunny',
 			subtitle: 'Gettin Real Tired of Big Buck Bunny',
 			images: [{ url: 'https://peach.blender.org/wp-content/uploads/bbb-splash.png' }]
-		} as GenericMediaMetadata,
+		},
 		contentType: 'video/mp4',
 		streamType: 'BUFFERED',
 		mediaCategory: 'VIDEO'
 	}
-}
+};

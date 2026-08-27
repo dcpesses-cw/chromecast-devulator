@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Chromecast Receiver</title>
+		<link rel="stylesheet" href="/src/styles/global.css" />
+		<link rel="stylesheet" href="/receiver/styles.css" />
+		<script src="/platform-polyfill.js"></script>
+		<script defer src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+	</head>
+	<body>
+		<div class="chromecast-receiver" id="receiver-root">
+			<div>Loading...</div>
+		</div>
+
+		<script type="module" src="/receiver/main.js"></script>
+	</body>
+</html>
