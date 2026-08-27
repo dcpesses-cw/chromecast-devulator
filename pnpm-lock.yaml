@@ -63,6 +63,12 @@ importers:
         specifier: ^5.0.3
         version: 5.4.14(@types/node@22.13.4)(sass@1.85.0)
 
+  emulator-vanilla:
+    devDependencies:
+      vite:
+        specifier: ^5.0.3
+        version: 5.4.14(@types/node@22.13.4)(sass@1.85.0)
+
   extension:
     devDependencies:
       esbuild:

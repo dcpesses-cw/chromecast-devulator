@@ -4,6 +4,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "pnpm run -r emulator:dev",
+		"dev:vanilla": "pnpm --filter chromecast-emulator-vanilla emulator:dev",
 		"extension": "pnpm run -r extension:build",
 		"wss": "pnpm run -r wss:serve"
 	},
