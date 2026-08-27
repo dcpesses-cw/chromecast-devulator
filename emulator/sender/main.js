@@ -40,6 +40,8 @@ const state = {
 const elements = {
 	castStatusLabel: document.getElementById('cast-status-label'),
 	castButton: document.getElementById('cast-button'),
+	openReceiver: document.getElementById('open-receiver'),
+	reelIcon: document.getElementById('reel-icon'),
 	loadButton: document.getElementById('load-button'),
 	mediaTitle: document.getElementById('media-title'),
 	mediaSubtitle: document.getElementById('media-subtitle'),
@@ -252,6 +254,7 @@ function initWebSocket() {
 	});
 }
 
+elements.reelIcon.append(createIconButton(icons.reel, () => window.open('/receiver/', '_blank')));
 elements.castButton.append(createIconButton(icons.cast, handleSenderWarmup));
 elements.loadButton.append(createIconButton(icons.send, handleMediaLoad));
 
