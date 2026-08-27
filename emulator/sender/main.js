@@ -173,7 +173,7 @@ function initWebSocket() {
 }
 
 elements.castButton.append(createIconButton(icons.cast, handleSenderWarmup));
-elements.loadButton.append(createIconButton(icons.reel, handleMediaLoad));
+elements.loadButton.append(createIconButton(icons.send, handleMediaLoad));
 
 // media controls
 [
