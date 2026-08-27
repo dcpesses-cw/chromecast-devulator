@@ -114,6 +114,7 @@ export function mountLoadRequestInput(container, { getValue, setValue }) {
 				validateAndSync();
 			}
 		},
-		getValue: () => lastValue
+		getValue: () => lastValue,
+		getEditorValue: () => input.textContent
 	};
 }

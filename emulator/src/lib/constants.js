@@ -1,7 +1,16 @@
 export const TemplateLoadRequestEnum = {
-	BASIC: 0,
-	BASIC_QUEUE: 1
+	BASIC: 'basic',
+	BASIC_QUEUE: 'basic-queue',
+	LOCAL_STORAGE_1: 1,
+	LOCAL_STORAGE_2: 2,
+	LOCAL_STORAGE_3: 3
 };
+
+export const LOAD_REQUEST_STORAGE_KEYS = [
+	'chromecast-emulator-load-request-1',
+	'chromecast-emulator-load-request-2',
+	'chromecast-emulator-load-request-3'
+];
 
 export const DEFAULT_QUEUED_MEDIA = {
 	type: 'LOAD',

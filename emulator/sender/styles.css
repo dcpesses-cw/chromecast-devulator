@@ -68,8 +68,14 @@ header > div {
 	padding: 1.45rem 0 0.45rem 0;
 	color: white;
 }
-
-.default-requests > div {
+.default-requests > div  {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.45rem;
+}
+.default-requests > div > div {
 	display: flex;
 	flex-flow: row wrap;
 	align-items: center;

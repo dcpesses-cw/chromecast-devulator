@@ -40,16 +40,43 @@
 			</section>
 
 			<section class="default-requests">
-				<h3>Pick from Template:</h3>
+				<h3>Choose Load Request Template:</h3>
 				<div>
-					<label id="template-basic" class="active">
-						<input type="radio" name="template" value="0" checked />
-						<div>Basic Load Request</div>
-					</label>
-					<label id="template-queue">
-						<input type="radio" name="template" value="1" />
-						<div>Basic Queue Load Request</div>
-					</label>
+					<div>
+						<label id="template-basic" class="active">
+							<input type="radio" name="template" value="basic" checked />
+							<div>Basic</div>
+						</label>
+						<label id="template-queue">
+							<input type="radio" name="template" value="basic-queue" />
+							<div>Basic Queue</div>
+						</label>
+						<span>or Load:</span>
+						<label id="template-from-localstorage1">
+							<input type="radio" name="template" value="1" />
+							<div>Custom 1</div>
+						</label>
+						<label id="template-from-localstorage2">
+							<input type="radio" name="template" value="2" />
+							<div>Custom 2</div>
+						</label>
+						<label id="template-from-localstorage3">
+							<input type="radio" name="template" value="3" />
+							<div>Custom 3</div>
+						</label>
+					</div>
+					<div>
+						<span>Save to:</span>
+						<label id="save-to-localstorage1">
+							<div>1</div>
+						</label>
+						<label id="save-to-localstorage2">
+							<div>2</div>
+						</label>
+						<label id="save-to-localstorage3">
+							<div>3</div>
+						</label>
+					</div>
 				</div>
 			</section>
 

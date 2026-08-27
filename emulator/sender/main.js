@@ -1,6 +1,7 @@
 import {
 	DEFAULT_MEDIA,
 	DEFAULT_QUEUED_MEDIA,
+	LOAD_REQUEST_STORAGE_KEYS,
 	TemplateLoadRequestEnum
 } from '../src/lib/constants.js';
 import { icons, createIconButton } from '../src/lib/icons.js';
@@ -50,8 +51,53 @@ const elements = {
 	volumeSlider: document.getElementById('volume-slider'),
 	templateBasic: document.getElementById('template-basic'),
 	templateQueue: document.getElementById('template-queue'),
+	templateFromLocalStorage1: document.getElementById('template-from-localstorage1'),
+	templateFromLocalStorage2: document.getElementById('template-from-localstorage2'),
+	templateFromLocalStorage3: document.getElementById('template-from-localstorage3'),
+	saveToLocalStorage1: document.getElementById('save-to-localstorage1'),
+	saveToLocalStorage2: document.getElementById('save-to-localstorage2'),
+	saveToLocalStorage3: document.getElementById('save-to-localstorage3'),
 	loadRequestInput: document.getElementById('load-request-input')
 };
+
+const templateLoadOptions = [
+	{ label: elements.templateBasic, type: TemplateLoadRequestEnum.BASIC },
+	{ label: elements.templateQueue, type: TemplateLoadRequestEnum.BASIC_QUEUE },
+	{ label: elements.templateFromLocalStorage1, type: TemplateLoadRequestEnum.LOCAL_STORAGE_1 },
+	{ label: elements.templateFromLocalStorage2, type: TemplateLoadRequestEnum.LOCAL_STORAGE_2 },
+	{ label: elements.templateFromLocalStorage3, type: TemplateLoadRequestEnum.LOCAL_STORAGE_3 }
+];
+
+const saveToLocalStorageButtons = [
+	elements.saveToLocalStorage1,
+	elements.saveToLocalStorage2,
+	elements.saveToLocalStorage3
+];
+
+function parseTemplateValue(value) {
+	if (value === TemplateLoadRequestEnum.BASIC || value === TemplateLoadRequestEnum.BASIC_QUEUE) {
+		return value;
+	}
+
+	const slot = Number(value);
+	if (slot >= TemplateLoadRequestEnum.LOCAL_STORAGE_1 && slot <= TemplateLoadRequestEnum.LOCAL_STORAGE_3) {
+		return slot;
+	}
+
+	return TemplateLoadRequestEnum.BASIC;
+}
+
+function getStorageKeyForTemplate(type) {
+	const slotIndex = type - TemplateLoadRequestEnum.LOCAL_STORAGE_1;
+	return LOAD_REQUEST_STORAGE_KEYS[slotIndex] ?? null;
+}
+
+function isCustomTemplate(type) {
+	return (
+		type >= TemplateLoadRequestEnum.LOCAL_STORAGE_1 &&
+		type <= TemplateLoadRequestEnum.LOCAL_STORAGE_3
+	);
+}
 
 function getDuration() {
 	return state.currentMediaInfo?.duration || 0;
@@ -111,10 +157,40 @@ function handleTimeUpdate(time) {
 	sendMessage(state.ws, messageSeek(state.currentTime));
 }
 
+function loadCustomLoadRequestFromLocalStorage(type) {
+	const storageKey = getStorageKeyForTemplate(type);
+	const saved = localStorage.getItem(storageKey);
+
+	if (!saved) {
+		console.warn(`No load request found in localStorage for Custom ${type}`);
+		return '{}'; // JSON.stringify(DEFAULT_MEDIA, null, 2);
+	}
+
+	try {
+		return JSON.stringify(JSON.parse(saved), null, 2);
+	} catch (e) {
+		console.error(`Saved load request for Custom ${type} is invalid JSON`, e);
+		return saved;
+	}
+}
+
+function saveCustomLoadRequestToLocalStorage(slotIndex) {
+	const storageKey = LOAD_REQUEST_STORAGE_KEYS[slotIndex];
+	const value = loadRequestInput.getEditorValue();
+
+	try {
+		JSON.parse(value);
+		localStorage.setItem(storageKey, value);
+	} catch (e) {
+		console.error(`Cannot save invalid JSON to Custom ${slotIndex + 1}`, e);
+	}
+}
+
 function handleLoadRequestTemplateChange(type) {
 	state.templateLoadRequest = type;
-	elements.templateBasic.classList.toggle('active', type === TemplateLoadRequestEnum.BASIC);
-	elements.templateQueue.classList.toggle('active', type === TemplateLoadRequestEnum.BASIC_QUEUE);
+	templateLoadOptions.forEach(({ label, type: templateType }) => {
+		label.classList.toggle('active', templateType === type);
+	});
 
 	switch (type) {
 		case TemplateLoadRequestEnum.BASIC:
@@ -122,7 +198,11 @@ function handleLoadRequestTemplateChange(type) {
 			break;
 		case TemplateLoadRequestEnum.BASIC_QUEUE:
 			state.loadRequest = JSON.stringify(DEFAULT_QUEUED_MEDIA, null, 2);
-			console.log('new load request', state.loadRequest);
+			break;
+		default:
+			if (isCustomTemplate(type)) {
+				state.loadRequest = loadCustomLoadRequestFromLocalStorage(type);
+			}
 			break;
 	}
 
@@ -205,7 +285,7 @@ elements.volumeSlider.addEventListener('change', () => {
 
 document.querySelectorAll('input[name="template"]').forEach((input) => {
 	input.addEventListener('change', (ev) => {
-		handleLoadRequestTemplateChange(parseInt(ev.target.value || '0', 10));
+		handleLoadRequestTemplateChange(parseTemplateValue(ev.target.value));
 	});
 });
 
@@ -214,6 +294,10 @@ const loadRequestInput = mountLoadRequestInput(elements.loadRequestInput, {
 	setValue: (value) => {
 		state.loadRequest = value;
 	}
+});
+
+saveToLocalStorageButtons.forEach((button, slotIndex) => {
+	button.addEventListener('click', () => saveCustomLoadRequestToLocalStorage(slotIndex));
 });
 
 const progressBar = mountProgressBar(elements.progressBar, {
