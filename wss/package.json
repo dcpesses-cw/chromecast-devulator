@@ -6,6 +6,7 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
+		"dev": "tsx index.ts",
 		"wss:serve": "tsx index.ts"
 	},
 	"dependencies": {

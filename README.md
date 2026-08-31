@@ -17,5 +17,6 @@ Forked from the [Chromecast Emulator Demo](https://github.com/jaclynonacloud/chr
 
 ## Scripts
 
-- `pnpn run dev`: to run the local emulator.
-- `pnpm run wss`: to run the WebSocket Server -- needed by the emulator to send/receive messages.
+- `pnpn run start`: concurrently run the local emulator and WebSocket Server.
+- `pnpn run dev`: to run only the local emulator.
+- `pnpm run wss`: to run only the WebSocket Server -- needed by the emulator to send/receive messages.
