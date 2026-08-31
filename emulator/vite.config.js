@@ -1,13 +1,12 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
 
 export default defineConfig({
 	build: {
-		rollupOptions: {
+		rolldownOptions: {
 			input: {
-				main: resolve(__dirname, 'index.html'),
-				sender: resolve(__dirname, 'sender/index.html'),
-				receiver: resolve(__dirname, 'receiver/index.html')
+				main: 'index.html',
+				sender: 'sender/index.html',
+				receiver: 'receiver/index.html'
 			}
 		}
 	}

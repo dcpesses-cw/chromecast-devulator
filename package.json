@@ -2,6 +2,9 @@
 	"name": "chromecast-emulator-demo",
 	"version": "0.0.2",
 	"type": "module",
+	"engines": {
+		"node": ">=22.12.0"
+	},
 	"scripts": {
 		"dev": "pnpm run -r emulator:dev",
 		"wss": "pnpm run -r wss:serve"

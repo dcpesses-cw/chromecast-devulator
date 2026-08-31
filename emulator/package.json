@@ -1,12 +1,12 @@
 {
-	"name": "chromecast-emulator-vanilla",
+	"name": "chromecast-emulator",
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
 		"emulator:dev": "vite dev"
 	},
 	"devDependencies": {
-		"vite": "^5.0.3"
+		"vite": "^8.2.2"
 	},
 	"license": "MIT"
 }
